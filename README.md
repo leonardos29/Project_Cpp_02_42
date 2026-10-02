@@ -1,81 +1,74 @@
-C++ Module 02
-Overview
+🧠 C++ Module 02
+
+42 C++ Module 02 — Ad-hoc Polymorphism, Operator Overloading & Orthodox Canonical Form
 
 This project is part of the C++ Modules from the 42 curriculum.
 
-The goal of Module 02 is to introduce ad-hoc polymorphism, operator overloading, and the Orthodox Canonical Form while working with a custom fixed-point number class.
+The goal of this module is to deepen the understanding of Object-Oriented Programming in C++, focusing on operator overloading, fixed-point arithmetic, references, const correctness, and the Orthodox Canonical Form.
 
-The project is written according to the C++98 standard.
+🛠️ Technologies
 
-Exercises
-ex00 — My First Class in Orthodox Canonical Form
+
+
+
+
+Language: C++98
+
+Compiler: c++
+
+Flags: -Wall -Wextra -Werror
+
+Build system: Makefile
+
+📚 Exercises
+Exercise	Topic	Status
+🟢 ex00	Orthodox Canonical Form	✅ Completed
+🟢 ex01	Fixed-Point Number Class	✅ Completed
+🟢 ex02	Operator Overloading	✅ Completed
+⚪ ex03	BSP / Point in Triangle	Optional
+🧱 ex00 — Orthodox Canonical Form
 
 Introduction to the Fixed class and the Orthodox Canonical Form.
 
 Implemented:
 
-Default constructor
+🏗️ Default constructor
 
-Copy constructor
+📋 Copy constructor
 
-Copy assignment operator
+✏️ Copy assignment operator
 
-Destructor
+🗑️ Destructor
 
-getRawBits()
+📖 getRawBits()
 
-setRawBits()
+🔧 setRawBits()
 
-ex01 — Towards a More Useful Fixed-Point Number Class
+The class stores the fixed-point value internally as an integer.
 
-The Fixed class is extended to support useful fixed-point conversions.
+🔢 ex01 — Fixed-Point Numbers
 
-Implemented:
+The Fixed class becomes more useful by supporting integer and floating-point values.
 
-Integer constructor
+Implemented
 
-Floating-point constructor
+🔢 Integer constructor
 
-toFloat()
+🌊 Floating-point constructor
 
-toInt()
+🔄 toFloat()
 
-Stream insertion operator <<
+🔢 toInt()
 
-Fixed-point conversion using 8 fractional bits
+📤 operator<<
 
-ex02 — Now We're Talking
-
-The Fixed class is extended with operator overloading.
-
-Implemented:
-
-Comparison operators: >, <, >=, <=, ==, !=
-
-Arithmetic operators: +, -, *, /
-
-Pre-increment and post-increment
-
-Pre-decrement and post-decrement
-
-min() and max() for mutable and constant objects
-
-The smallest representable increment is:
-
-1 / 256 = 0.00390625
-
-ex03 — BSP
-
-An optional exercise introducing a Point class and a Binary Space Partitioning function to determine whether a point is inside a triangle.
-
-This exercise is optional according to the Module 02 subject.
+🎯 Fixed-point representation with 8 fractional bits
 
 Fixed-Point Representation
 
-The Fixed class uses an integer to store the fixed-point value and reserves 8 bits for the fractional part.
+The class uses:
 
-The scaling factor is:
-
+8 fractional bits
 2^8 = 256
 
 
@@ -84,41 +77,188 @@ For example:
 5.5 × 256 = 1408
 
 
-So 5.5 is internally represented by the raw value 1408.
+Therefore, the raw value representing 5.5 is 1408.
 
-Compilation
+⚙️ ex02 — Now We're Talking
 
-The project follows the compilation requirements from the 42 subject:
+The main focus of this exercise is operator overloading.
 
-c++ -Wall -Wextra -Werror -std=c++98
+🔍 Comparison Operators
+>
+<
+>=
+<=
+==
+!=
+
+➕ Arithmetic Operators
++
+-
+*
+/
+
+🔄 Increment & Decrement
+++a
+a++
+
+--a
+a--
 
 
-A Makefile is provided for building the project.
+The smallest representable increment is:
 
-Concepts Practiced
+1 / 256 = 0.00390625
 
-Classes and encapsulation
+📊 Min & Max
 
-Orthodox Canonical Form
+Implemented both mutable and const versions of:
 
-Constructors and destructors
+min()
+max()
 
-Copy semantics
 
-Operator overloading
+These functions return references to the existing objects rather than creating unnecessary copies.
 
-Fixed-point arithmetic
+🧮 Fixed-Point Arithmetic
 
-Static member functions
+One of the main concepts of this module is maintaining the correct scale during arithmetic operations.
 
-References and const correctness
+Addition & Subtraction
 
-Pre-increment and post-increment
+Raw values can be added or subtracted directly because they use the same scale.
 
-Pre-decrement and post-decrement
+rawA + rawB
+rawA - rawB
 
-C++98 syntax and restrictions
+Multiplication
 
-Author
+Multiplying two fixed-point raw values introduces an extra scaling factor, so one factor of 2^8 must be removed.
 
-42 Student — C++ Module 02
+(rawA × rawB) / 256
+
+Division
+
+Division requires preserving the fractional precision, so the dividend is scaled before dividing.
+
+(rawA × 256) / rawB
+
+🧪 Example Output
+
+The ex02 implementation produces the expected results from the subject:
+
+0
+0.00390625
+0.00390625
+0.00390625
+0.0078125
+10.1016
+10.1016
+
+🧰 Compilation
+
+Clone the repository and enter the desired exercise:
+
+git clone <repository-url>
+cd CPP02
+cd ex02
+
+
+Compile using:
+
+make
+
+
+Or manually:
+
+c++ -Wall -Wextra -Werror -std=c++98 *.cpp
+
+
+Run:
+
+./fixed
+
+
+Clean the build:
+
+make clean
+
+
+Remove all generated files:
+
+make fclean
+
+
+Rebuild everything:
+
+make re
+
+🎯 Learning Goals
+
+Through this module, I practiced:
+
+🧱 Object-Oriented Programming
+
+📐 Orthodox Canonical Form
+
+🔧 Operator overloading
+
+🧮 Fixed-point arithmetic
+
+📋 Copy constructors
+
+✏️ Copy assignment
+
+🔗 References
+
+🔒 const correctness
+
+⚙️ Static member functions
+
+🔄 Pre/post increment and decrement
+
+💻 C++98 programming
+
+📁 Project Structure
+CPP02/
+├── ex00/
+│   ├── Fixed.cpp
+│   ├── Fixed.hpp
+│   ├── main.cpp
+│   └── Makefile
+│
+├── ex01/
+│   ├── Fixed.cpp
+│   ├── Fixed.hpp
+│   ├── main.cpp
+│   └── Makefile
+│
+├── ex02/
+│   ├── Fixed.cpp
+│   ├── Fixed.hpp
+│   ├── main.cpp
+│   └── Makefile
+│
+└── ex03/
+    ├── Fixed.cpp
+    ├── Fixed.hpp
+    ├── Point.cpp
+    ├── Point.hpp
+    ├── bsp.cpp
+    ├── main.cpp
+    └── Makefile
+
+📝 Notes
+
+This project follows the restrictions and requirements of the 42 C++ Module 02 subject, including the use of C++98 and the required compiler flags.
+
+🚀 Learning by understanding the concepts behind the implementation, not just the final result.
+
+👨‍💻 Author
+
+42 Student
+
+🏫 42 School
+
+C++ Module 02 — Ad-hoc Polymorphism, Operator Overloading and the Orthodox Canonical Class Form
+
+⭐ Part of my journey through the 42 Common Core.
