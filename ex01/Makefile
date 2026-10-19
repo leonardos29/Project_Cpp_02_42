@@ -1,8 +1,10 @@
 NAME    = fixed
 CC      = c++
 FLAGS   = -Wall -Wextra -Werror -std=c++98
+
 SRC     = main.cpp Fixed.cpp
 OBJ     = $(SRC:.cpp=.o)
+DEP     = $(SRC:.cpp=.d)
 
 all: $(NAME)
 
@@ -10,10 +12,12 @@ $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 
 %.o: %.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -MMD -MP -c $< -o $@
+	
+-include $(DEP)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(DEP)
 
 fclean: clean
 	rm -f $(NAME)
